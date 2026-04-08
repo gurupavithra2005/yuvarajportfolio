@@ -25,10 +25,10 @@ const Services = () => {
           {services.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={title}
-              className="group rounded-2xl bg-card border border-border p-6 text-center transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
-              style={{ transitionDelay: `${i * 100}ms` }}
+              className="group rounded-2xl bg-card border border-border p-6 text-center transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2"
+              style={{ transitionDelay: `${i * 100}ms`, perspective: "600px" }}
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                 <Icon className="text-primary" size={24} />
               </div>
               <h3 className="font-bold mb-2">{title}</h3>

@@ -20,20 +20,24 @@ const Skills = () => {
           Technologies I work with
         </p>
 
-        <div className="grid gap-8">
+        <div className="grid sm:grid-cols-2 gap-6">
           {skills.map((skill, i) => (
-            <div key={skill.name}>
-              <div className="flex justify-between mb-2">
+            <div
+              key={skill.name}
+              className="p-6 rounded-2xl bg-card border border-border hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="flex justify-between mb-3">
                 <span className="font-semibold">{skill.name}</span>
-                <span className="text-muted-foreground text-sm">{skill.level}%</span>
+                <span className="text-primary font-bold">{skill.level}%</span>
               </div>
               <div className="h-3 rounded-full bg-secondary overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-1000 ease-out"
                   style={{
                     width: isVisible ? `${skill.level}%` : "0%",
-                    background: skill.color,
+                    background: `linear-gradient(90deg, ${skill.color}, ${skill.color}cc)`,
                     transitionDelay: `${i * 200}ms`,
+                    boxShadow: `0 0 10px ${skill.color}40`,
                   }}
                 />
               </div>

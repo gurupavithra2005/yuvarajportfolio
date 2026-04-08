@@ -1,5 +1,6 @@
 import { useScrollAnimation } from "./useScrollAnimation";
 import { Code, Palette, Zap } from "lucide-react";
+import profileImg from "@/assets/yuvaraj-profile.jpeg";
 
 const About = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -15,10 +16,12 @@ const About = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Profile placeholder */}
-          <div className="flex justify-center">
-            <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-border flex items-center justify-center">
-              <span className="text-6xl font-bold text-primary font-['Syne']">YD</span>
+          <div className="flex justify-center" style={{ perspective: "800px" }}>
+            <div className="relative group">
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-primary/30 to-primary/5 blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
+              <div className="w-64 h-64 rounded-2xl overflow-hidden border border-primary/20 shadow-xl transition-transform duration-500 group-hover:rotate-y-3">
+                <img src={profileImg} alt="Yuvaraj D" className="w-full h-full object-cover object-top" />
+              </div>
             </div>
           </div>
 
@@ -36,7 +39,7 @@ const About = () => {
                 { icon: Palette, label: "Modern Design", value: "Pixel Perfect" },
                 { icon: Zap, label: "Fast Delivery", value: "On Time" },
               ].map(({ icon: Icon, label, value }) => (
-                <div key={label} className="text-center p-4 rounded-xl bg-card border border-border">
+                <div key={label} className="text-center p-4 rounded-xl bg-card border border-border hover:border-primary/30 hover:-translate-y-1 transition-all duration-300">
                   <Icon className="mx-auto mb-2 text-primary" size={24} />
                   <p className="text-xs text-muted-foreground">{label}</p>
                   <p className="text-sm font-semibold">{value}</p>

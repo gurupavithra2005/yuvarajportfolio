@@ -45,11 +45,11 @@ const Projects = () => {
           {projects.map((project, i) => (
             <div
               key={project.title}
-              className="group rounded-2xl bg-card border border-border p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+              className="group rounded-2xl bg-card border border-border p-6 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <div className="h-40 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-6">
-                <span className="text-3xl font-bold text-primary/40 font-['Syne']">{project.title.charAt(0)}</span>
+              <div className="h-40 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 overflow-hidden group-hover:from-primary/30 group-hover:to-primary/10 transition-all duration-500">
+                <span className="text-4xl font-bold text-primary/50 font-['Syne'] group-hover:scale-125 transition-transform duration-500">{project.title.charAt(0)}</span>
               </div>
               <h3 className="text-lg font-bold mb-2">{project.title}</h3>
               <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
@@ -59,7 +59,7 @@ const Projects = () => {
                 ))}
               </div>
               <div className="flex flex-wrap gap-2">
-                <Button size="sm" asChild className="rounded-full text-xs">
+                <Button size="sm" asChild className="rounded-full text-xs shadow-lg shadow-primary/20">
                   <a href={project.live} target="_blank" rel="noopener noreferrer">
                     <ExternalLink size={14} /> Live Demo
                   </a>
