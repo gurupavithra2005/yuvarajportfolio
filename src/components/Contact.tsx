@@ -3,7 +3,7 @@ import { useScrollAnimation } from "./useScrollAnimation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Github, Linkedin, Send, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -35,8 +35,11 @@ const Contact = () => {
             </p>
 
             <div className="space-y-4 mb-8">
-              <a href="mailto:yuvaraj@example.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                <Mail size={18} /> yuvaraj@example.com
+              <a href="mailto:www.yuvaraj933@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <Mail size={18} /> www.yuvaraj933@gmail.com
+              </a>
+              <a href="tel:+919043269455" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <Phone size={18} /> +91 9043269455
               </a>
             </div>
 
@@ -51,29 +54,9 @@ const Contact = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              placeholder="Your Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-              className="bg-card border-border rounded-xl"
-            />
-            <Input
-              type="email"
-              placeholder="Your Email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-              className="bg-card border-border rounded-xl"
-            />
-            <Textarea
-              placeholder="Your Message"
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              required
-              rows={5}
-              className="bg-card border-border rounded-xl"
-            />
+            <Input placeholder="Your Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="bg-card border-border rounded-xl" />
+            <Input type="email" placeholder="Your Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="bg-card border-border rounded-xl" />
+            <Textarea placeholder="Your Message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required rows={5} className="bg-card border-border rounded-xl" />
             <Button type="submit" className="w-full rounded-xl">
               <Send size={16} /> Send Message
             </Button>

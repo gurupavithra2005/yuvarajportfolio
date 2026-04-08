@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const links = ["Home", "About", "Skills", "Projects", "Services", "Contact"];
 
@@ -35,7 +36,7 @@ const Navbar = () => {
         <button onClick={() => scrollTo("Home")} className="text-xl font-bold font-['Syne'] text-primary">
           YD.
         </button>
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <button
               key={l}
@@ -45,10 +46,14 @@ const Navbar = () => {
               {l}
             </button>
           ))}
+          <ThemeToggle />
         </div>
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+          <button className="text-foreground" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
       {open && (
         <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border">
