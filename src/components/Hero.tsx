@@ -42,8 +42,8 @@ const Hero = () => {
           <div className="relative w-80 h-72 rounded-2xl bg-card border border-border p-6 shadow-xl" style={{ animation: "float 6s ease-in-out infinite" }}>
             <div className="flex gap-2 mb-4">
               <div className="w-3 h-3 rounded-full bg-destructive/60" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-              <div className="w-3 h-3 rounded-full bg-green-500/60" />
+              <div className="w-3 h-3 rounded-full" style={{ background: "hsl(45, 93%, 47%, 0.6)" }} />
+              <div className="w-3 h-3 rounded-full" style={{ background: "hsl(142, 71%, 45%, 0.6)" }} />
             </div>
             <pre className="text-xs text-muted-foreground font-mono leading-relaxed">
               <code>
