@@ -1,102 +1,126 @@
-import { ArrowDown, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown, Github, Linkedin, Mail, Globe, Download } from "lucide-react";
 import { useEffect, useState } from "react";
-import profileImg from "@/assets/yuvaraj-profile.jpeg";
+import MagneticButton from "./MagneticButton";
 
-const titles = ["Freelance Web Developer", "Frontend Specialist", "UI/UX Enthusiast"];
+const roles = ["AI Developer", "Full Stack Developer", "Software Engineer"];
 
 const Hero = () => {
-  const [titleIndex, setTitleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [i, setI] = useState(0);
+  const [c, setC] = useState(0);
+  const [del, setDel] = useState(false);
 
   useEffect(() => {
-    const current = titles[titleIndex];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!isDeleting && charIndex < current.length) {
-      timeout = setTimeout(() => setCharIndex((c) => c + 1), 80);
-    } else if (!isDeleting && charIndex === current.length) {
-      timeout = setTimeout(() => setIsDeleting(true), 1800);
-    } else if (isDeleting && charIndex > 0) {
-      timeout = setTimeout(() => setCharIndex((c) => c - 1), 40);
-    } else if (isDeleting && charIndex === 0) {
-      setIsDeleting(false);
-      setTitleIndex((i) => (i + 1) % titles.length);
+    const current = roles[i];
+    let t: ReturnType<typeof setTimeout>;
+    if (!del && c < current.length) t = setTimeout(() => setC((v) => v + 1), 70);
+    else if (!del && c === current.length) t = setTimeout(() => setDel(true), 1800);
+    else if (del && c > 0) t = setTimeout(() => setC((v) => v - 1), 35);
+    else {
+      setDel(false);
+      setI((v) => (v + 1) % roles.length);
     }
+    return () => clearTimeout(t);
+  }, [c, del, i]);
 
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, titleIndex]);
-
-  const scrollTo = (id: string) => {
+  const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(262_83%_58%/0.15),transparent_50%)]" />
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-[500px] h-[500px] -top-40 -left-40 rounded-full bg-primary/5 blur-3xl animate-pulse" />
-        <div className="absolute w-[400px] h-[400px] -bottom-20 -right-20 rounded-full bg-primary/8 blur-3xl animate-pulse" style={{ animationDelay: "2s" }} />
-      </div>
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16 px-6"
+    >
+      {/* ambient gradients */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_top,hsl(45_100%_52%/0.10),transparent_55%)]" />
+      <div className="absolute w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl animate-pulse" />
 
-      <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        <div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm mb-6 animate-fade-in-up">
-            <Sparkles size={14} />
-            Available for Work
-          </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 animate-fade-in-up animation-delay-200">
-            Hi There! 👋
-          </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 animate-fade-in-up animation-delay-200">
-            I'm <span className="text-primary">Yuvaraj D.</span>
-          </h2>
-          <p className="text-xl md:text-2xl text-primary/80 mb-2 animate-fade-in-up animation-delay-200 h-8">
-            {titles[titleIndex].substring(0, charIndex)}
-            <span className="inline-block w-0.5 h-6 bg-primary ml-1 animate-pulse" />
-          </p>
-          <p className="text-muted-foreground max-w-lg mb-8 animate-fade-in-up animation-delay-400">
-            I build responsive and user-friendly websites and applications for clients. Crafting pixel-perfect digital experiences that bring ideas to life.
-          </p>
-          <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-600">
-            <Button size="lg" onClick={() => scrollTo("projects")} className="rounded-full px-8 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow">
-              View My Work
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => scrollTo("contact")} className="rounded-full px-8 border-primary/30 hover:bg-primary/10">
-              Contact Me
-            </Button>
-          </div>
+      <div className="max-w-5xl mx-auto relative z-10 text-center">
+        {/* status badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/30 text-xs uppercase tracking-[0.25em] mb-8 animate-fade-in-up">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+          </span>
+          <span className="gold-text font-semibold">Open to Work</span>
         </div>
 
-        {/* Profile image with 3D decorative frame */}
-        <div className="flex justify-center animate-fade-in-up animation-delay-400">
-          <div className="relative group" style={{ perspective: "1000px" }}>
-            {/* Glow ring */}
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-primary/40 via-primary/10 to-primary/30 blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-            {/* Decorative half-circle */}
-            <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-primary/50 to-transparent" style={{ clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)" }} />
-            {/* Profile image */}
-            <div
-              className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20 transition-transform duration-500 group-hover:scale-105"
-              style={{ transformStyle: "preserve-3d" }}
+        {/* name */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6 animate-fade-in-up animation-delay-200 text-balance">
+          <span className="block">Yuvaraj</span>
+          <span className="block gold-text animate-gradient bg-gradient-to-r from-[hsl(45_100%_45%)] via-[hsl(45_100%_65%)] to-[hsl(45_100%_45%)]">
+            D.
+          </span>
+        </h1>
+
+        {/* typing role */}
+        <div className="font-mono text-base md:text-xl mb-6 h-8 animate-fade-in-up animation-delay-400 text-muted-foreground">
+          <span className="text-primary">{roles[i].substring(0, c)}</span>
+          <span className="inline-block w-[2px] h-5 bg-primary ml-1 align-middle animate-pulse" />
+        </div>
+
+        {/* role list */}
+        <p className="text-sm md:text-base tracking-widest uppercase text-muted-foreground/70 mb-8 animate-fade-in-up animation-delay-400">
+          AI Developer <span className="text-primary/60">•</span> Full Stack Developer{" "}
+          <span className="text-primary/60">•</span> Software Engineer
+        </p>
+
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up animation-delay-600 text-balance">
+          I build AI-powered applications, modern web experiences, hackathon-winning
+          solutions, and scalable software that solve real-world problems.
+        </p>
+
+        {/* buttons */}
+        <div className="flex flex-wrap gap-4 justify-center mb-12 animate-fade-in-up animation-delay-600">
+          <MagneticButton
+            onClick={() => scrollTo("projects")}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 gold-glow shadow-lg font-semibold"
+          >
+            View Projects
+          </MagneticButton>
+          <MagneticButton
+            as="a"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener"
+            className="glass border border-primary/30 text-foreground hover:border-primary hover:text-primary"
+          >
+            <Download size={16} /> Resume
+          </MagneticButton>
+          <MagneticButton
+            onClick={() => scrollTo("contact")}
+            className="glass border border-border text-foreground hover:border-primary/50"
+          >
+            Contact Me
+          </MagneticButton>
+        </div>
+
+        {/* socials */}
+        <div className="flex justify-center gap-3 animate-fade-in-up animation-delay-800">
+          {[
+            { icon: Github, href: "https://github.com", label: "GitHub" },
+            { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+            { icon: Mail, href: "mailto:www.yuvaraj933@gmail.com", label: "Email" },
+            { icon: Globe, href: "https://yuvarajportfolio.lovable.app", label: "Portfolio" },
+          ].map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="group relative w-11 h-11 rounded-full glass border border-border flex items-center justify-center transition-all duration-300 hover:border-primary hover:-translate-y-1 hover:gold-glow"
             >
-              <img
-                src={profileImg}
-                alt="Yuvaraj D"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-            {/* Floating sparkle decorations */}
-            <div className="absolute -top-2 -right-2 w-4 h-4 text-primary animate-pulse">✦</div>
-            <div className="absolute -bottom-2 -left-2 w-3 h-3 text-primary/60 animate-pulse" style={{ animationDelay: "1s" }}>✦</div>
-          </div>
+              <Icon size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+            </a>
+          ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <button onClick={() => scrollTo("about")} className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground animate-bounce">
+      <button
+        onClick={() => scrollTo("tech")}
+        aria-label="Scroll"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground/60 hover:text-primary animate-bounce"
+      >
         <ArrowDown size={20} />
       </button>
     </section>
